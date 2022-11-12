@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Titan+One&display=swap"
+        rel="stylesheet">
+    <title>Series/Movie Tracker</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span>Series / Movies Tracker</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="" data-series-links></a>SERIES</li>
+                <li><a href=""></a>MOVIE</li>
+                <li><button class="btn-cirle">+</button></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="modal hidden">
+        <div class="modal__container">
+            <div class="form">
+                <h2>NEW SERIES</h2>
+                <div class="inputBox">
+                    <input type="text" id="seriesTitle" required>
+                    <span>SERIES TITLE</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="" id="seriesSeason" required>
+                    <span>SEASON</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="" id="seriesEpisode" required>
+                    <span>EPISODE</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="" id="seriesLink" required>
+                    <span>IMDB LINK</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="" id="seriesCover" required>
+                    <span>COVER</span>
+                    <i></i>
+                </div>
+                <button id="submit" class="btn-submit">SUBMIT</button>
+            </div>
+        </div>
+    </section>
+    <div class="overlay hidden">
+    
+    </div>
+    <main>
+        <div id="cards" class="cards">
+
+        </div>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>`
