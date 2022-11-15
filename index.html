@@ -16,55 +16,41 @@
         <div class="logo">
             <span>Series / Movies Tracker</span>
         </div>
-        <nav>
-            <ul>
-                <li><a href="" data-series-links></a>SERIES</li>
-                <li><a href=""></a>MOVIE</li>
-                <li><button class="btn-cirle">+</button></li>
-            </ul>
-        </nav>
     </header>
-    <section class="modal hidden">
-        <div class="modal__container">
-            <div class="form">
-                <h2>NEW SERIES</h2>
-                <div class="inputBox">
-                    <input type="text" id="seriesTitle" required>
-                    <span>SERIES TITLE</span>
-                    <i></i>
-                </div>
-                <div class="inputBox">
-                    <input type="text" name="" id="seriesSeason" required>
-                    <span>SEASON</span>
-                    <i></i>
-                </div>
-                <div class="inputBox">
-                    <input type="text" name="" id="seriesEpisode" required>
-                    <span>EPISODE</span>
-                    <i></i>
-                </div>
-                <div class="inputBox">
-                    <input type="text" name="" id="seriesLink" required>
-                    <span>IMDB LINK</span>
-                    <i></i>
-                </div>
-                <div class="inputBox">
-                    <input type="text" name="" id="seriesCover" required>
-                    <span>COVER</span>
-                    <i></i>
-                </div>
-                <button id="submit" class="btn-submit">SUBMIT</button>
+    <main class="app">
+        <section class="create-todo">
+            <h3>ADD NEW SERIES</h3>
+            <form id="new-series-form">
+                <input type="text" name="title" id="title" />
+                <input type="text" name="season" id="season" />
+                <input type="text" name="episode" id="episode" />
+                <input type="submit" value="Add series" />
+            </form>
+        </section>
+        <section class="series-list">
+            <div id="series-list">
+                
             </div>
-        </div>
-    </section>
-    <div class="overlay hidden">
-    
-    </div>
-    <main>
-        <div id="cards" class="cards">
-
-        </div>
+            <!-- <h3>You have 32 series</h3>
+            <div class="list" id="series-list">
+                <div class="series-item">
+                    <label>
+                        <input type="checkbox" />
+                        <span class="bubble"></span>
+                    </label>
+                    <div class="series-content">
+                        <input type="text" value="Title 1" readonly>
+                        <input type="text" value="Season 1" readonly>
+                        <input type="text" value="Episode 1" readonly>
+                    </div>
+                    <div class="actions">
+                        <button class="edit">Edit</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                </div>
+            </div> -->
+        </section>
     </main>
     <script src="app.js"></script>
 </body>
-</html>`
+</html>
