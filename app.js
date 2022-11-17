@@ -103,5 +103,12 @@ function displaySeries() {
                 displaySeries();
             })
         })
+
+        deleteButton.addEventListener('click', e => {
+            e.preventDefault()
+            series = series.filter(n => n != newSeries);
+            localStorage.setItem('series', JSON.stringify(series));
+            displaySeries();
+        })
     })
 }
