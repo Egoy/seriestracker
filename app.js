@@ -21,6 +21,7 @@ window.addEventListener('load', () => {
         displaySeries();
     })
     displaySeries();
+    console.log(series)
 })
 
 function displaySeries() {
@@ -55,8 +56,8 @@ function displaySeries() {
         edit.innerHTML = 'Edit'
         deleteButton.innerHTML = 'Delete'
 
-        label.appendChild(input)
-        label.appendChild(span)
+        // label.appendChild(input)
+        // label.appendChild(span)
         actions.appendChild(edit)
         actions.appendChild(deleteButton)
         seriesItem.appendChild(label)
@@ -65,22 +66,20 @@ function displaySeries() {
 
         seriesList.appendChild(seriesItem)
 
-        if (newSeries.ended) {
-            seriesItem.classList.add('done')
-        }
 
-        input.addEventListener('click', e=> {
-            newSeries.ended = e.target.checked;
-            localStorage.setItem('series', JSON.stringify(series));
 
-            if (newSeries.ended) {
-                seriesItem.classList.add('done')
-            } else {
-                seriesItem.classList.remove('done')
-            }
-
-            displaySeries();
-        }) 
+        // input.addEventListener('click', e=> {
+        //     newSeries.ended = e.target.checked;
+        //     series.push(series.shift());
+        //     localStorage.setItem('series', JSON.stringify(series));
+        //     displaySeries();
+        // }) 
+        // if (newSeries.ended) {
+        //     seriesItem.classList.add('done')
+        //     input.setAttribute('disabled', true)
+        // } else {
+        //     input.removeAttribute('disabled')
+        // }
 
         edit.addEventListener('click', e => {
             const inputTitle = content.querySelector('#title');
@@ -91,6 +90,9 @@ function displaySeries() {
             inputTitle.removeAttribute('readonly');
             inputSeason.removeAttribute('readonly');
             inputEpisode.removeAttribute('readonly');
+            // input.removeAttribute('disabled');
+            // input.checked = false;
+            seriesItem.classList.remove('done');
             edit.addEventListener('click', e => {
                 e.preventDefault()
                 inputTitle.setAttribute('readonly', true);
@@ -99,6 +101,7 @@ function displaySeries() {
                 newSeries.title = inputTitle.value;
                 newSeries.season = inputSeason.value;
                 newSeries.episode = inputEpisode.value;
+                series.push(series.shift());
                 localStorage.setItem('series', JSON.stringify(series));
                 displaySeries();
             })
@@ -112,3 +115,4 @@ function displaySeries() {
         })
     })
 }
+
