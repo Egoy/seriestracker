@@ -10,15 +10,28 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
-.modal {
+header {
     display: flex;
     justify-content: center;
+    font-weight: 900;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: #aaa333;
+}
+
+.create-todo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 .modal__container {
     position: relative;
     width: 380px;
-    height: 600px;
+    height: 700px;
     background: #1c1c1c;
     border-radius: 8px;
     overflow: hidden;
@@ -69,6 +82,7 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 .form h2 {
     color: #aa0fe7;
     font-weight: 700;
@@ -77,6 +91,7 @@ body {
     font-family: 'Titan One';
     /* margin-bottom: 10px; */
 }
+
 .inputBox {
     position: relative;
     width: 300px;
@@ -109,6 +124,14 @@ body {
     transform: translateY(-10px) translateY(-34px);
     font-size: .75em;
 }
+.inputBox input:valid,
+.inputBox input:focus {
+    font-weight: 900;
+}
+.inputBox input:not(:focus) {
+    font-weight: 400;
+}
+
 .inputBox i {
     position: absolute;
     left: 0;
@@ -125,8 +148,14 @@ body {
     height: 44px;
     z-index: -1;
 }
+.inputBox:nth-child(2),
+.inputBox:nth-child(5),
+.inputBox:nth-child(6) {
+    width: 200px;
+}
 .inputBox:nth-child(3), .inputBox:nth-child(4){
-    width: 40px;
+    width: 70px;
+    display: inline;
 }
 .inputBox:nth-child(6) {
     margin-bottom: 30px;

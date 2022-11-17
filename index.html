@@ -18,13 +18,35 @@
         </div>
     </header>
     <main class="app">
-        <section class="create-todo">
-            <h3>ADD NEW SERIES</h3>
-            <form id="new-series-form">
-                <input type="text" name="title" id="title" />
-                <input type="text" name="season" id="season" />
-                <input type="text" name="episode" id="episode" />
-                <input type="submit" value="Add series" />
+        <section class="create-todo modal__container">          
+            <form id="new-series-form" class="form">
+                <h2>ADD NEW SERIES</h2>
+                <div class="inputBox">
+                    <input type="text" name="title" id="title" required/>
+                    <span>Title</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="season" id="season" required/>
+                    <span>Season</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="episode" id="episode" required/>
+                    <span>Episode</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="episode" id="s2day" required/>
+                    <span>Soap2day link</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="text" name="episode" id="myflixer" required/>
+                    <span>My Flixer Link</span>
+                    <i></i>
+                </div>
+                <input type="submit" value="Add series" class="btn-submit"/>
             </form>
         </section>
         <section class="series-list">
@@ -51,6 +73,8 @@
             </div> -->
         </section>
     </main>
+    <script src="Sortable.js"></script>
     <script src="app.js"></script>
+
 </body>
 </html>

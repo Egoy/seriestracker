@@ -24,10 +24,10 @@ window.addEventListener('load', () => {
     console.log(series)
 })
 
+
 function displaySeries() {
     const seriesList = document.querySelector('#series-list')
     seriesList.innerHTML = '';
-
     series.forEach(newSeries => {
         const seriesItem = document.createElement('div')
         seriesItem.classList.add('series-item')
@@ -39,7 +39,9 @@ function displaySeries() {
         const actions = document.createElement('div');
         const edit = document.createElement('button');
         const deleteButton = document.createElement('button');
-
+        new Sortable(seriesItem, {
+            animation: 300
+        });
         input.type = 'checkbox';
         input.checked = newSeries.ended;
         span.classList.add('bubble');
@@ -80,7 +82,6 @@ function displaySeries() {
         // } else {
         //     input.removeAttribute('disabled')
         // }
-
         edit.addEventListener('click', e => {
             const inputTitle = content.querySelector('#title');
             const inputSeason = content.querySelector('#season');
@@ -115,4 +116,5 @@ function displaySeries() {
         })
     })
 }
+
 
