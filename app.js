@@ -48,9 +48,9 @@ function displaySeries() {
         edit.classList.add('edit')
         deleteButton.classList.add('delete')
 
-        content.innerHTML = `<input type="text" value="${newSeries.title}" readonly />
-                            <input type="text" value="${newSeries.season}" readonly />
-                            <input type="text" value="${newSeries.episode}" readonly />
+        content.innerHTML = `<input type="text" value="${newSeries.title}" readonly id="title"/>
+                            <input type="text" value="${newSeries.season}" readonly id="season"/>
+                            <input type="text" value="${newSeries.episode}" readonly id="episode"/>
         `;
         edit.innerHTML = 'Edit'
         deleteButton.innerHTML = 'Delete'
@@ -59,6 +59,7 @@ function displaySeries() {
         label.appendChild(span)
         actions.appendChild(edit)
         actions.appendChild(deleteButton)
+        seriesItem.appendChild(label)
         seriesItem.appendChild(content)
         seriesItem.appendChild(actions)
 
@@ -82,15 +83,22 @@ function displaySeries() {
         }) 
 
         edit.addEventListener('click', e => {
-            // const inputTitle = content.getElementbyID('title');
-            // const inputSeason = content.getElementbyID('season');
-            // const inputEpisode = content.getElementbyID('episode');
-            const input = content.querySelectorAll('input')
-            input.removeAttribute('readonly');
-            input.focus()
-            input.addEventListener('blur', e => {
-                input.setAttribute('readonly', true);
-                newSeries.content = e.target.value;
+            const inputTitle = content.querySelector('#title');
+            const inputSeason = content.querySelector('#season');
+            const inputEpisode = content.querySelector('#episode');
+            edit.innerHTML = 'SAVE'
+            // const input = content.getElementsByClassName('input')
+            inputTitle.removeAttribute('readonly');
+            inputSeason.removeAttribute('readonly');
+            inputEpisode.removeAttribute('readonly');
+            edit.addEventListener('click', e => {
+                e.preventDefault()
+                inputTitle.setAttribute('readonly', true);
+                inputSeason.setAttribute('readonly', true);
+                inputEpisode.setAttribute('readonly', true);
+                newSeries.title = inputTitle.value;
+                newSeries.season = inputSeason.value;
+                newSeries.episode = inputEpisode.value;
                 localStorage.setItem('series', JSON.stringify(series));
                 displaySeries();
             })
