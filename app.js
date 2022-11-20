@@ -9,8 +9,11 @@ window.addEventListener('load', () => {
             title: e.target.elements.title.value,
             season: e.target.elements.season.value,
             episode: e.target.elements.episode.value,
-            ended: false,
-            createdAt: new Date().getTime()
+            s2day: e.target.elements.s2day.value,
+            myFlixer: e.target.elements.myFlixer.value,
+            comment: e.target.elements.comment.value,
+            watched: false,
+            createdAt: new Date().toTimeString().slice(0,8)
         }
 
         series.push(newSeries)
@@ -26,87 +29,103 @@ window.addEventListener('load', () => {
 
 
 function displaySeries() {
-    const seriesList = document.querySelector('#series-list')
-    seriesList.innerHTML = '';
+    const seriesList = document.querySelector('#series-list');
+    // seriesList.innerHTML = '';
     series.forEach(newSeries => {
-        const seriesItem = document.createElement('div')
-        seriesItem.classList.add('series-item')
+        const seriesItem = document.createElement('tr');
+        const dateWatched = document.createElement('td');
+        const seriesTitle = document.createElement('td');
+        const seriesSeason = document.createElement('td');
+        const seriesEpisode = document.createElement('td')
+        const seriesLinks = document.createElement('td')
+        const seriesComments = document.createElement('td')
+        const seriesActions = document.createElement('td')
+        const editButton = document.createElement('button')
+        const deleteButton = document.createElement('button')
 
-        const label = document.createElement('label');
-        const input = document.createElement('input');
-        const span = document.createElement('span');
-        const content = document.createElement('div');
-        const actions = document.createElement('div');
-        const edit = document.createElement('button');
-        const deleteButton = document.createElement('button');
-        new Sortable(seriesItem, {
-            animation: 300
+        seriesItem.classList.add('series-data');
+        dateWatched.classList.add('date-watched');
+        seriesTitle.classList.add('series-title');
+        seriesSeason.classList.add('season');
+        seriesEpisode.classList.add('episode');
+        seriesLinks.classList.add('links');
+        seriesComments.classList.add('comments');
+        seriesActions.classList.add('actions');
+        new Sortable(seriesList, {
+            animation: 300,
+            filter: ".table-header",
+            cancel: ".table-header"
         });
-        input.type = 'checkbox';
-        input.checked = newSeries.ended;
-        span.classList.add('bubble');
+        dateWatched.innerHTML = `<h3>${newSeries.dateWatched}</h3>`;
+        seriesTitle.innerHTML = `<h2>${newSeries.title}</h2>`;
+        seriesSeason.innerHTML = `<input id="inputSeason" type="number" readonly value="${newSeries.season}"></input>`;
+        seriesEpisode.innerHTML = `<input id="inputEpisode" type="number" readonly value="${newSeries.episode}"></input>`;
+        seriesLinks.innerHTML = `<a href="${newSeries.s2day}">SOAP2DAY</a>
+                                <a href="${newSeries.myFlixer}">MyFlixer</a>`;
+        seriesComments.innerHTML = `<input id="inputComment" type="text" readonly value="${newSeries.comment}"></input>`;
+        editButton.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
+        deleteButton.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+        seriesActions.appendChild(editButton);
+        seriesActions.appendChild(deleteButton);
 
-        content.classList.add('series-content');
-        actions.classList.add('actions')
-        edit.classList.add('edit')
-        deleteButton.classList.add('delete')
+        seriesList.appendChild(seriesItem);
+        seriesItem.appendChild(dateWatched);
+        seriesItem.appendChild(seriesTitle);
+        seriesItem.appendChild(seriesSeason);
+        seriesItem.appendChild(seriesEpisode);
+        seriesItem.appendChild(seriesLinks);
+        seriesItem.appendChild(seriesComments);
+        seriesItem.appendChild(seriesActions);
 
-        content.innerHTML = `<input type="text" value="${newSeries.title}" readonly id="title"/>
-                            <input type="text" value="${newSeries.season}" readonly id="season"/>
-                            <input type="text" value="${newSeries.episode}" readonly id="episode"/>
-        `;
-        edit.innerHTML = 'Edit'
-        deleteButton.innerHTML = 'Delete'
-
-        // label.appendChild(input)
-        // label.appendChild(span)
-        actions.appendChild(edit)
-        actions.appendChild(deleteButton)
-        seriesItem.appendChild(label)
-        seriesItem.appendChild(content)
-        seriesItem.appendChild(actions)
-
-        seriesList.appendChild(seriesItem)
-
-
-
-        // input.addEventListener('click', e=> {
-        //     newSeries.ended = e.target.checked;
-        //     series.push(series.shift());
-        //     localStorage.setItem('series', JSON.stringify(series));
-        //     displaySeries();
-        // }) 
-        // if (newSeries.ended) {
-        //     seriesItem.classList.add('done')
-        //     input.setAttribute('disabled', true)
-        // } else {
-        //     input.removeAttribute('disabled')
-        // }
-        edit.addEventListener('click', e => {
-            const inputTitle = content.querySelector('#title');
-            const inputSeason = content.querySelector('#season');
+        editButton.addEventListener('click', e => {
+            const inputSeason = content.querySelector('.season');
             const inputEpisode = content.querySelector('#episode');
-            edit.innerHTML = 'SAVE'
-            // const input = content.getElementsByClassName('input')
-            inputTitle.removeAttribute('readonly');
+            // const inputComment = content.querySelector('.commentBox');
             inputSeason.removeAttribute('readonly');
             inputEpisode.removeAttribute('readonly');
-            // input.removeAttribute('disabled');
-            // input.checked = false;
-            seriesItem.classList.remove('done');
-            edit.addEventListener('click', e => {
+            seriesItem.classList.add('editable')
+            // inputComment.removeAttribute('readonly');
+            editButton.addEventListener('click', e => {
                 e.preventDefault()
-                inputTitle.setAttribute('readonly', true);
                 inputSeason.setAttribute('readonly', true);
                 inputEpisode.setAttribute('readonly', true);
-                newSeries.title = inputTitle.value;
+                // inputComment.setAttribute('readonly', true);
                 newSeries.season = inputSeason.value;
                 newSeries.episode = inputEpisode.value;
+                // newSeries.comment = inputComment.value;
+                seriesItem.classList.remove('editable');
                 series.push(series.shift());
                 localStorage.setItem('series', JSON.stringify(series));
                 displaySeries();
             })
         })
+        
+
+        // edit.addEventListener('click', e => {
+        //     const inputTitle = content.querySelector('#title');
+        //     const inputSeason = content.querySelector('#season');
+        //     const inputEpisode = content.querySelector('#episode');
+        //     seriesItem.classList.add('editable')
+        //     edit.innerHTML = 'SAVE'
+        //     inputTitle.removeAttribute('readonly');
+        //     inputSeason.removeAttribute('readonly');
+        //     inputEpisode.removeAttribute('readonly');
+        //     edit.addEventListener('click', e => {
+        //         e.preventDefault()
+        //         inputTitle.setAttribute('readonly', true);
+        //         inputSeason.setAttribute('readonly', true);
+        //         inputEpisode.setAttribute('readonly', true);
+        //         newSeries.title = inputTitle.value;
+        //         newSeries.season = inputSeason.value;
+        //         newSeries.episode = inputEpisode.value;
+        //         seriesItem.classList.remove('editable')
+        //         newSeries.watched = true;
+        //         series.push(series.shift());
+        //         localStorage.setItem('series', JSON.stringify(series));
+        //         displaySeries();
+                
+        //     })
+        // })
 
         deleteButton.addEventListener('click', e => {
             e.preventDefault()

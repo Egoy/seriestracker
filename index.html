@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Titan+One&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Series/Movie Tracker</title>
 </head>
 <body>
@@ -17,42 +18,62 @@
             <span>Series / Movies Tracker</span>
         </div>
     </header>
-    <main class="app">
-        <section class="create-todo modal__container">          
-            <form id="new-series-form" class="form">
-                <h2>ADD NEW SERIES</h2>
+    <section class="create-todo modal__container">          
+        <form id="new-series-form" class="form">
+            <h2>ADD NEW SERIES</h2>
+            <div class="inputForm">
                 <div class="inputBox">
                     <input type="text" name="title" id="title" required/>
                     <span>Title</span>
                     <i></i>
                 </div>
                 <div class="inputBox">
-                    <input type="text" name="season" id="season" required/>
+                    <input type="number" name="season" id="season" required/>
                     <span>Season</span>
                     <i></i>
                 </div>
                 <div class="inputBox">
-                    <input type="text" name="episode" id="episode" required/>
+                    <input type="number" name="episode" id="episode" required/>
                     <span>Episode</span>
                     <i></i>
                 </div>
                 <div class="inputBox">
-                    <input type="text" name="episode" id="s2day" required/>
+                    <input type="text" name="s2day" id="s2day" required/>
                     <span>Soap2day link</span>
                     <i></i>
                 </div>
                 <div class="inputBox">
-                    <input type="text" name="episode" id="myflixer" required/>
-                    <span>My Flixer Link</span>
+                    <input type="text" name="myFlixer" id="myFlixer" required/>
+                    <span>MyFlixer Link</span>
                     <i></i>
                 </div>
-                <input type="submit" value="Add series" class="btn-submit"/>
-            </form>
-        </section>
-        <section class="series-list">
-            <div id="series-list">
-                
+                <div class="inputBox">
+                    <textarea id="comment" name="comment" rows="4" cols="50" placeholder="Insert comment here">
+                    </textarea>
+                </div>
             </div>
+            <input type="submit" value="Add series" class="btn-submit"/>
+        </form>
+    </section>
+    <main class="app">
+        <!-- <section class="series-list"> -->
+            <!-- <div id="series-list">
+                
+            </div> -->
+            <table>
+                <thead class="table-header">
+                    <th>Date Watched</th>
+                    <th>Series Title</th>
+                    <th>Season</th>
+                    <th>Episode</th>
+                    <th>Links</th>
+                    <th>Comment</th>
+                    <th></th>
+                </thead>
+                <tbody id="series-list">
+
+                </tbody>
+            </table>
             <!-- <h3>You have 32 series</h3>
             <div class="list" id="series-list">
                 <div class="series-item">
@@ -71,7 +92,6 @@
                     </div>
                 </div>
             </div> -->
-        </section>
     </main>
     <script src="Sortable.js"></script>
     <script src="app.js"></script>
