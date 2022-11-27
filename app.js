@@ -1,7 +1,7 @@
 window.addEventListener('load', () => {
     series = JSON.parse(localStorage.getItem('series')) || [];
     const newSeriesForm = document.querySelector('#new-series-form');
-
+    const modal = document.getElementById('modal')
     newSeriesForm.addEventListener('submit', e => {
         e.preventDefault();
 
@@ -15,22 +15,29 @@ window.addEventListener('load', () => {
             watched: false,
             createdAt: new Date().toTimeString().slice(0,8)
         }
-
         series.push(newSeries)
         localStorage.setItem('series', JSON.stringify(series));
-
         e.target.reset();
-
         displaySeries();
+        modal.classList.add('hideModal')
+        modal.classList.remove('showModal')
     })
+
     displaySeries();
-    console.log(series)
+})
+const btn = document.querySelector('#modal-button');
+btn.addEventListener('click', e => {
+    modal.classList.add('showModal');
 })
 
-
+const closeBtn = document.querySelector('.close');
+closeBtn.addEventListener('click', e => {
+    modal.classList.remove('showModal')
+    modal.classList.add('hideModal')
+})
 function displaySeries() {
     const seriesList = document.querySelector('#series-list');
-    // seriesList.innerHTML = '';
+    seriesList.innerHTML = '';
     series.forEach(newSeries => {
         const seriesItem = document.createElement('tr');
         const dateWatched = document.createElement('td');
@@ -60,8 +67,8 @@ function displaySeries() {
         seriesTitle.innerHTML = `<h2>${newSeries.title}</h2>`;
         seriesSeason.innerHTML = `<input id="inputSeason" type="number" readonly value="${newSeries.season}"></input>`;
         seriesEpisode.innerHTML = `<input id="inputEpisode" type="number" readonly value="${newSeries.episode}"></input>`;
-        seriesLinks.innerHTML = `<a href="${newSeries.s2day}">SOAP2DAY</a>
-                                <a href="${newSeries.myFlixer}">MyFlixer</a>`;
+        seriesLinks.innerHTML = `<a href="${newSeries.s2day}" target="_blank">SOAP2DAY</a>
+                                <a href="${newSeries.myFlixer}" target="_blank">MyFlixer</a>`;
         seriesComments.innerHTML = `<input id="inputComment" type="text" readonly value="${newSeries.comment}"></input>`;
         editButton.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
         deleteButton.innerHTML = `<i class="fa-solid fa-trash"></i>`;
@@ -78,8 +85,8 @@ function displaySeries() {
         seriesItem.appendChild(seriesActions);
 
         editButton.addEventListener('click', e => {
-            const inputSeason = content.querySelector('.season');
-            const inputEpisode = content.querySelector('#episode');
+            const inputSeason = seriesSeason.querySelector('input');
+            const inputEpisode = seriesEpisode.querySelector('input');
             // const inputComment = content.querySelector('.commentBox');
             inputSeason.removeAttribute('readonly');
             inputEpisode.removeAttribute('readonly');
@@ -99,33 +106,8 @@ function displaySeries() {
                 displaySeries();
             })
         })
-        
-
-        // edit.addEventListener('click', e => {
-        //     const inputTitle = content.querySelector('#title');
-        //     const inputSeason = content.querySelector('#season');
-        //     const inputEpisode = content.querySelector('#episode');
-        //     seriesItem.classList.add('editable')
-        //     edit.innerHTML = 'SAVE'
-        //     inputTitle.removeAttribute('readonly');
-        //     inputSeason.removeAttribute('readonly');
-        //     inputEpisode.removeAttribute('readonly');
-        //     edit.addEventListener('click', e => {
-        //         e.preventDefault()
-        //         inputTitle.setAttribute('readonly', true);
-        //         inputSeason.setAttribute('readonly', true);
-        //         inputEpisode.setAttribute('readonly', true);
-        //         newSeries.title = inputTitle.value;
-        //         newSeries.season = inputSeason.value;
-        //         newSeries.episode = inputEpisode.value;
-        //         seriesItem.classList.remove('editable')
-        //         newSeries.watched = true;
-        //         series.push(series.shift());
-        //         localStorage.setItem('series', JSON.stringify(series));
-        //         displaySeries();
-                
-        //     })
-        // })
+        const seriesCount = document.querySelector('.intro');
+        seriesCount.innerHTML = `<p>You have ${series.length} series on your watch list</p>`  
 
         deleteButton.addEventListener('click', e => {
             e.preventDefault()
@@ -135,5 +117,3 @@ function displaySeries() {
         })
     })
 }
-
-

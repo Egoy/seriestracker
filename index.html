@@ -17,10 +17,16 @@
         <div class="logo">
             <span>Series / Movies Tracker</span>
         </div>
+        <div class="intro">
+
+        </div>
+        <div class="add-series" id="modal-button">
+            <i class="fa-solid fa-circle-plus"></i>
+        </div>
     </header>
-    <section class="create-todo modal__container">          
+    <section class="create-todo modal__container" id="modal">
+        <span class="close">&times;</span>       
         <form id="new-series-form" class="form">
-            <h2>ADD NEW SERIES</h2>
             <div class="inputForm">
                 <div class="inputBox">
                     <input type="text" name="title" id="title" required/>
@@ -48,8 +54,7 @@
                     <i></i>
                 </div>
                 <div class="inputBox">
-                    <textarea id="comment" name="comment" rows="4" cols="50" placeholder="Insert comment here">
-                    </textarea>
+                    <textarea id="comment" name="comment" rows="4" cols="50" placeholder="Insert comment here"></textarea>
                 </div>
             </div>
             <input type="submit" value="Add series" class="btn-submit"/>
@@ -70,28 +75,11 @@
                     <th>Comment</th>
                     <th></th>
                 </thead>
-                <tbody id="series-list">
+                <tbody id="series-list" class="series-list">
 
                 </tbody>
             </table>
-            <!-- <h3>You have 32 series</h3>
-            <div class="list" id="series-list">
-                <div class="series-item">
-                    <label>
-                        <input type="checkbox" />
-                        <span class="bubble"></span>
-                    </label>
-                    <div class="series-content">
-                        <input type="text" value="Title 1" readonly>
-                        <input type="text" value="Season 1" readonly>
-                        <input type="text" value="Episode 1" readonly>
-                    </div>
-                    <div class="actions">
-                        <button class="edit">Edit</button>
-                        <button class="delete">Delete</button>
-                    </div>
-                </div>
-            </div> -->
+            
     </main>
     <script src="Sortable.js"></script>
     <script src="app.js"></script>
