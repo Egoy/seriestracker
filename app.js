@@ -13,7 +13,7 @@ window.addEventListener('load', () => {
             myFlixer: e.target.elements.myFlixer.value,
             comment: e.target.elements.comment.value,
             watched: false,
-            createdAt: new Date().toTimeString().slice(0,8)
+            createdAt: Date.now()
         }
         series.push(newSeries)
         localStorage.setItem('series', JSON.stringify(series));
@@ -59,7 +59,7 @@ function displaySeries() {
         seriesLinks.classList.add('links');
         seriesComments.classList.add('comments');
         seriesActions.classList.add('actions');
-        dateWatched.innerHTML = `<h3>${series.indexOf(series)}</h3>`;
+        dateWatched.innerHTML = `<h3>${(newSeries.dateWatched)}</h3>`;
         seriesTitle.innerHTML = `<h2>${newSeries.title}</h2>`;
         seriesSeason.innerHTML = `<input id="inputSeason" type="number" readonly value="${newSeries.season}"></input>`;
         seriesEpisode.innerHTML = `<input id="inputEpisode" type="number" readonly value="${newSeries.episode}"></input>`;
@@ -84,26 +84,26 @@ function displaySeries() {
             const inputSeason = seriesSeason.querySelector('input');
             const inputEpisode = seriesEpisode.querySelector('input');
             const inputComment = seriesComments.querySelector('input')
-            // const inputComment = content.querySelector('.commentBox');
             inputSeason.removeAttribute('readonly');
             inputEpisode.removeAttribute('readonly');
             inputComment.removeAttribute('readonly');
             
             seriesItem.classList.add('editable')
-            // inputComment.removeAttribute('readonly');
             editButton.addEventListener('click', e => {
                 e.preventDefault()
                 inputSeason.setAttribute('readonly', true);
                 inputEpisode.setAttribute('readonly', true);
                 inputComment.setAttribute('readonly', true)
-                // inputComment.setAttribute('readonly', true);
                 newSeries.season = inputSeason.value;
                 newSeries.episode = inputEpisode.value;
                 newSeries.comment = inputComment.value;
-                // newSeries.comment = inputComment.value;
                 seriesItem.classList.remove('editable');
-                // series.splice(currentIndex, 0)
-                series.push(series.shift());
+                const index = series.indexOf(newSeries)
+                if (index > -1) {
+                    series.splice(index, 1)
+                }
+                series.push(newSeries)
+                console.log(index)
                 localStorage.setItem('series', JSON.stringify(series));
                 displaySeries();
             })
