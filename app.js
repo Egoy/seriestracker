@@ -13,7 +13,7 @@ window.addEventListener('load', () => {
             myFlixer: e.target.elements.myFlixer.value,
             comment: e.target.elements.comment.value,
             watched: false,
-            createdAt: Date.now()
+            dateWatched: ""
         }
         series.push(newSeries)
         localStorage.setItem('series', JSON.stringify(series));
@@ -25,6 +25,14 @@ window.addEventListener('load', () => {
     // console.log(series)
     displaySeries();
 })
+
+    // const today = new Date()
+    // const week = today.toLocaleString('en-us', {  weekday: 'long' });
+    // const month= today.toLocaleString('default', {  month: 'long' });
+    // const day = today.getDate()
+    // const current_time = today.getHours()+":"+today.getMinutes();
+    // const currentDate = `${week}, ${month} ${day} @${current_time}`
+
 const btn = document.querySelector('#modal-button');
 btn.addEventListener('click', e => {
     modal.classList.add('showModal');
@@ -35,6 +43,14 @@ closeBtn.addEventListener('click', e => {
     modal.classList.remove('showModal')
     modal.classList.add('hideModal')
 })
+
+const today = new Date()
+const week = today.toLocaleString('en-us', {  weekday: 'long' });
+const month= today.toLocaleString('default', {  month: 'long' });
+const day = today.getDate()
+const current_time = today.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+const currentDate = `${week}, <br> ${month} ${day} ${current_time}`
+
 
 function displaySeries() {
     const seriesList = document.querySelector('#series-list');
@@ -59,7 +75,7 @@ function displaySeries() {
         seriesLinks.classList.add('links');
         seriesComments.classList.add('comments');
         seriesActions.classList.add('actions');
-        dateWatched.innerHTML = `<h3>${(newSeries.dateWatched)}</h3>`;
+        dateWatched.innerHTML = `<h3>${currentDate}</h3>`;
         seriesTitle.innerHTML = `<h2>${newSeries.title}</h2>`;
         seriesSeason.innerHTML = `<input id="inputSeason" type="number" readonly value="${newSeries.season}"></input>`;
         seriesEpisode.innerHTML = `<input id="inputEpisode" type="number" readonly value="${newSeries.episode}"></input>`;
@@ -97,13 +113,15 @@ function displaySeries() {
                 newSeries.season = inputSeason.value;
                 newSeries.episode = inputEpisode.value;
                 newSeries.comment = inputComment.value;
+                newSeries.dateWatched = currentDate;
                 seriesItem.classList.remove('editable');
                 const index = series.indexOf(newSeries)
                 if (index > -1) {
                     series.splice(index, 1)
                 }
+                dateWatched.innerHTML = `<h3>${currentDate}</h3>`;
+
                 series.push(newSeries)
-                console.log(index)
                 localStorage.setItem('series', JSON.stringify(series));
                 displaySeries();
             })
