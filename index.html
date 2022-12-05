@@ -13,58 +13,56 @@
     <title>Series/Movie Tracker</title>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <span>Series / Movies Tracker</span>
-        </div>
-        <div class="intro">
-
-        </div>
-        <div class="add-series" id="modal-button">
-            <i class="fa-solid fa-circle-plus"></i>
-        </div>
-    </header>
-    <section class="create-todo modal__container" id="modal">
-        <span class="close">&times;</span>       
-        <form id="new-series-form" class="form">
-            <div class="inputForm">
-                <div class="inputBox">
-                    <input type="text" name="title" id="title" required/>
-                    <span>Title</span>
-                    <i></i>
-                </div>
-                <div class="inputBox">
-                    <input type="number" name="season" id="season" required/>
-                    <span>Season</span>
-                    <i></i>
-                </div>
-                <div class="inputBox">
-                    <input type="number" name="episode" id="episode" required/>
-                    <span>Episode</span>
-                    <i></i>
-                </div>
-                <div class="inputBox">
-                    <input type="text" name="s2day" id="s2day" required/>
-                    <span>Soap2day link</span>
-                    <i></i>
-                </div>
-                <div class="inputBox">
-                    <input type="text" name="myFlixer" id="myFlixer" required/>
-                    <span>MyFlixer Link</span>
-                    <i></i>
-                </div>
-                <div class="inputBox">
-                    <textarea id="comment" name="comment" rows="4" cols="50" placeholder="Insert comment here"></textarea>
-                </div>
+    <div class="modal-wrapper">
+    </div>
+        <header>
+            <div class="logo">
+                <span>Series / Movies Tracker</span>
             </div>
-            <input type="submit" value="Add series" class="btn-submit"/>
-        </form>
-    </section>
-    <main class="app">
-        <!-- <section class="series-list"> -->
-            <!-- <div id="series-list">
-                
-            </div> -->
+            <div class="intro">
+
+            </div>
+            <div class="add-series" id="modal-button">
+                <i class="fa-solid fa-circle-plus"></i>
+            </div>
+        </header>
+            <section class="modal__container" id="modal">
+                <span class="close">&times;</span>
+                <form id="new-series-form" class="form">
+                    <div class="inputForm">
+                        <div class="inputBox">
+                            <input type="text" name="title" id="title" required />
+                            <span>Title</span>
+                            <i></i>
+                        </div>
+                        <div class="inputBox">
+                            <input type="number" name="season" id="season" required />
+                            <span>Season</span>
+                            <i></i>
+                        </div>
+                        <div class="inputBox">
+                            <input type="number" name="episode" id="episode" required />
+                            <span>Episode</span>
+                            <i></i>
+                        </div>
+                        <div class="inputBox">
+                            <input type="text" name="s2day" id="s2day" required />
+                            <span>Soap2day link</span>
+                            <i></i>
+                        </div>
+                        <div class="inputBox">
+                            <input type="text" name="myFlixer" id="myFlixer" required />
+                            <span>MyFlixer Link</span>
+                            <i></i>
+                        </div>
+                        <div class="inputBox">
+                            <textarea id="comment" name="comment" rows="4" cols="50" placeholder="Insert comment here"></textarea>
+                        </div>
+                    </div>
+                    <input type="submit" value="Add series" class="btn-submit" />
+                </form>
+            </section>
+        <main class="app">
             <table>
                 <thead class="table-header">
                     <th>Date Watched</th>
@@ -79,8 +77,8 @@
 
                 </tbody>
             </table>
-            
-    </main>
+        </main>
+
     <script src="Sortable.js"></script>
     <script src="app.js"></script>
 

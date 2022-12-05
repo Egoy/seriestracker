@@ -21,27 +21,37 @@ window.addEventListener('load', () => {
         displaySeries();
         modal.classList.add('hideModal')
         modal.classList.remove('showModal')
+        appWrapper.style.display = 'none'
     })
     // console.log(series)
     displaySeries();
 })
 
-    // const today = new Date()
-    // const week = today.toLocaleString('en-us', {  weekday: 'long' });
-    // const month= today.toLocaleString('default', {  month: 'long' });
-    // const day = today.getDate()
-    // const current_time = today.getHours()+":"+today.getMinutes();
-    // const currentDate = `${week}, ${month} ${day} @${current_time}`
+const appWrapper = document.querySelector('.modal-wrapper')
+const modalContainer = document.querySelector('.form')
+
+
+document.addEventListener('click', e => {
+    if (e.target.closest('.modal-wrapper') && modal.classList.contains('showModal')){
+        modal.classList.remove('showModal')
+        modal.classList.add('hideModal')
+        appWrapper.style.display = 'none'
+    }
+})
 
 const btn = document.querySelector('#modal-button');
 btn.addEventListener('click', e => {
     modal.classList.add('showModal');
+    appWrapper.style.display = 'block'
 })
+
+
 
 const closeBtn = document.querySelector('.close');
 closeBtn.addEventListener('click', e => {
     modal.classList.remove('showModal')
     modal.classList.add('hideModal')
+    appWrapper.style.display = 'none'
 })
 
 
@@ -56,7 +66,6 @@ function logDate() {
     return currentDate
 }
 
-console.log(logDate())
 function displaySeries() {
     const seriesList = document.querySelector('#series-list');
     seriesList.innerHTML = '';
